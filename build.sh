@@ -1,5 +1,5 @@
 #! /bin/sh
-# $Id: build.sh,v 1.1 2005/04/07 12:31:26 aida_s Exp $
+# $Id: build.sh,v 1.1.1.1 2005/04/07 12:31:26 aida_s Exp $
 # vim: set sw=4:
 set -e
 

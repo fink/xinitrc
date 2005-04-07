@@ -1,4 +1,4 @@
-$Id: numbering.txt,v 1.1 2005/04/07 12:31:26 aida_s Exp $
+$Id: numbering.txt,v 1.1.1.1 2005/04/07 12:31:26 aida_s Exp $
 
 This document describes a proposed numbering policy.
 If you found some problems, mail to:

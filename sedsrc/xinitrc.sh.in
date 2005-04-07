@@ -1,5 +1,5 @@
 #! /bin/sh
-# $Id: xinitrc.sh.in,v 1.1 2005/04/07 12:31:27 aida_s Exp $
+# $Id: xinitrc.sh.in,v 1.1.1.1 2005/04/07 12:31:27 aida_s Exp $
 # vim: set sw=4 sts=4 ts=8 noexpandtab:
 
 # Both direct execution and ". $fink_bindir/xinitrc.sh" are supported.

@@ -1,5 +1,5 @@
 #! /bin/sh
-# $Id: sys-xinitrc-fink.in,v 1.1 2005/04/07 12:31:27 aida_s Exp $
+# $Id: sys-xinitrc-fink.in,v 1.1.1.1 2005/04/07 12:31:27 aida_s Exp $
 
 # This script works even after the Fink "xinitrc" package is removed.
 # Don't worry.

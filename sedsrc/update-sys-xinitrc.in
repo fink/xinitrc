@@ -1,5 +1,5 @@
 #! /bin/sh
-# $Id: update-sys-xinitrc.in,v 1.1 2005/04/07 12:31:27 aida_s Exp $
+# $Id: update-sys-xinitrc.in,v 1.1.1.1 2005/04/07 12:31:27 aida_s Exp $
 set -e
 fink_prefix="@PREFIX@"
 sysxinitdir="/usr/X11R6/lib/X11/xinit"

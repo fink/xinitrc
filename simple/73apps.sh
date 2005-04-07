@@ -1,4 +1,4 @@
-# $Id: 73apps.sh,v 1.1 2005/04/07 12:31:27 aida_s Exp $
+# $Id: 73apps.sh,v 1.1.1.1 2005/04/07 12:31:27 aida_s Exp $
 : ${xinitrc_apps_term_enable=YES}
 : ${xinitrc_apps_term_loginshell=NO}
 
