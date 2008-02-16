@@ -1,5 +1,5 @@
 #! /bin/sh
-# $Id: sys-xinitrc-fink.in,v 1.3 2008/02/15 14:42:40 okayama Exp $
+# $Id: sys-xinitrc-fink.in,v 1.4 2008/02/16 02:28:30 okayama Exp $
 
 # This script works even after the Fink "xinitrc" package is removed.
 # Don't worry.
@@ -48,7 +48,7 @@ else
 
     # start the window manager
 
-    if type quartz-wm >/dev/null 2&>1; then
+    if type quartz-wm >/dev/null 2>&1; then
 	sessionmgr="`which quartz-wm`"
     elif test -x "$x_bindir/twm"; then
 	sessionmgr="$x_bindir/twm"
