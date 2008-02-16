@@ -1,4 +1,4 @@
-# $Id: 73apps.sh,v 1.3 2008/02/16 09:41:12 okayama Exp $
+# $Id: 73apps.sh,v 1.4 2008/02/16 12:30:58 okayama Exp $
 case "`/usr/bin/uname -r`" in
     7*|8*) : ${xinitrc_apps_term_enable=YES} ;;
     9*)    : ${xinitrc_apps_term_enable=NO}  ;;
@@ -8,7 +8,10 @@ esac
 case x"${xinitrc_apps_termcmd-unset}" in
     xunset)
     xinitrc_apps__lsarg="-ls"
-    if test -x "$fink_bindir/mlterm"; then
+    if test -x "$fink_bindir/gnome-terminal"; then
+	xinitrc_apps_termcmd="$fink_bindir/gnome-terminal"
+	xinitrc_apps__lsarg=""
+    elif test -x "$fink_bindir/mlterm"; then
 	xinitrc_apps_termcmd="$fink_bindir/mlterm"
 	xinitrc_apps__lsarg="-L"
     elif test -x "$fink_bindir/urxvt"; then

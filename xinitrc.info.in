@@ -1,10 +1,10 @@
-# $Id: xinitrc.info.in,v 1.1 2005/04/07 12:31:26 aida_s Exp $
+# $Id: xinitrc.info.in,v 1.2 2008/02/16 12:30:56 okayama Exp $
 Package: xinitrc
 Version: @FULLVERSION@
 # Revision is always 1
 Revision: 1
 Description: Alternative X11 initialization script
-@TARDIST@Source: http://www.j10n.org/files/%n-%v.tar.gz
+@TARDIST@Source: http://fink.sodan.ecc.u-tokyo.ac.jp/pkgdists/%n-%v.tar.gz
 @TARDIST@Source-MD5: @MD5@
 @PATCHDIST@Type: nosource
 @PATCHDIST@Patch: %n.patch
