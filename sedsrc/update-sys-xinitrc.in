@@ -1,5 +1,5 @@
 #! /bin/sh
-# $Id: update-sys-xinitrc.in,v 1.1 2005/04/07 12:31:27 aida_s Exp $
+# $Id: update-sys-xinitrc.in,v 1.2 2008/02/18 06:41:09 okayama Exp $
 set -e
 fink_prefix="@PREFIX@"
 sysxinitdir="/usr/X11R6/lib/X11/xinit"
@@ -66,7 +66,7 @@ esac
 
 echo "If the system-wide xinitrc alredy exists, a backup is made. Don't worry."
 echo
-echo -n "Do you want to continue? [Y/n] "
+/bin/echo -n "Do you want to continue? [Y/n] "
 read answer || :
 case "x$annswer" in
     x[Yy]*|x)
