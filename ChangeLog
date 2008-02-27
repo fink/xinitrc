@@ -1,3 +1,10 @@
+2008-02-27 AIDA Shinra <shinra@j10n.org>
+* 1.5 release
+* sedsrc/update-sys-xinitrc.in: System xinitrc has been replaced
+  unconditionally. Fixed. (s/annswer/answer/g)
+* simple/20dispconf.sh: Fixed another typo, which prevents reading
+  system-wide .Xresources and .Xmodmap.
+
 2008-02-18 Tomoaki Okayama <okayama@sodan.ecc.u-tokyo.ac.jp>
 * 1.4 release
 * sedsrc/sys-xinitrc-fink.in: Launching xterm is not needed on Leopard.
@@ -90,4 +97,4 @@
 2004-05-04 AIDA Shinra <shinra@j10n.org>
 * Initial revision. Automated update of system xinitrc is not yet done.
 
-$Id: ChangeLog,v 1.7 2008/02/18 06:41:09 okayama Exp $
+$Id: ChangeLog,v 1.8 2008/02/27 14:09:59 aida_s Exp $
