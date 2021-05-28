@@ -85,8 +85,8 @@ dobuild() {
 	*)
     $run cat > "$builddir/build.sed" << EOF
 s|@PREFIX@|$prefix|g
-s|@XINITDIR@|/usr/X11R6/lib/X11/xinit|g
-s|@X_BINDIR@|/usr/X11R6/bin|g
+s|@XINITDIR@|/opt/X11/lib/X11/xinit|g
+s|@X_BINDIR@|/opt/X11/bin|g
 EOF
 	;;
     esac

@@ -8,7 +8,7 @@
 fink_prefix="@PREFIX@"
 fink_bindir="$fink_prefix/bin"
 fink_sysconfdir="$fink_prefix/etc"
-x_prefix="/usr/X11R6"
+x_prefix="/opt/X11"
 x_bindir="$x_prefix/bin"
 # This works whichever X is in use
 x_xinitdir="$x_prefix/lib/X11/xinit"
