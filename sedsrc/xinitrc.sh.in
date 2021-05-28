@@ -11,7 +11,7 @@ fink_sysconfdir="$fink_prefix/etc"
 x_prefix="/opt/X11"
 x_bindir="$x_prefix/bin"
 # This works whichever X is in use
-x_xinitdir="$x_prefix/lib/X11/xinit"
+x_xinitdir="$x_prefix/etc/X11/xinit"
 
 # Hook for system administrators.
 if test -f "$fink_sysconfdir/xinitrc-first-hook"; then
