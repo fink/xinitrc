@@ -38,6 +38,11 @@ if test -d "$xinitrc_xinitrc_d_dir"; then
     unset xinitrc__f
 fi
 
+# Read in user scripts via stock X11 script
+if test -f "$x_xinitdir/xinitrc.d/98-user.sh"; then
+	. "$x_xinitdir/xinitrc.d/98-user.sh"
+fi
+
 # Hook for system administrators.
 if test -f "$fink_sysconfdir/xinitrc-last-hook"; then
     . "$fink_sysconfdir/xinitrc-last-hook"
