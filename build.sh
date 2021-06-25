@@ -80,12 +80,20 @@ go_p() {
 dobuild() {
     go $mkinstalldirscmd "$builddir"
     $show "creating build.sed"
+    if [[ -d /opt/X11/etc/X11/xinit ]]; then
+        xinitdir = /opt/X11/etc/X11/xinit;
+    elif [[ -d /opt/X11/lib/X11/xinit ]]; then
+        xinitdir = /opt/X11/lib/X11/xinit;
+    else
+    	echo "xinit dir for X11 not found. Exiting."
+    	exit 1;
+    fi
     case "x$run" in
 	x:) ;;
 	*)
     $run cat > "$builddir/build.sed" << EOF
 s|@PREFIX@|$prefix|g
-s|@XINITDIR@|/opt/X11/etc/X11/xinit|g
+s|@XINITDIR@|/$xinitdir|g
 s|@X_BINDIR@|/opt/X11/bin|g
 EOF
 	;;
