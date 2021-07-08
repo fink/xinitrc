@@ -1,6 +1,4 @@
 #! /bin/sh
-# $Id: sys-xinitrc-fink.in,v 1.5 2008/02/18 06:41:09 okayama Exp $
-
 # This script works even after the Fink "xinitrc" package is removed.
 # Don't worry.
 

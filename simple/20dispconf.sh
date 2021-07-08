@@ -1,4 +1,3 @@
-# $Id: 20dispconf.sh,v 1.2 2008/02/27 14:10:00 aida_s Exp $
 : ${xinitrc_dispconf_xrdb_enable=YES}
 : ${xinitrc_dispconf_sysresources="$x_xinitdir/.Xresources"}
 : ${xinitrc_dispconf_userresources="$HOME/.Xresources"}

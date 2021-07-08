@@ -1,4 +1,3 @@
-# $Id: 73apps.sh,v 1.4 2008/02/16 12:30:58 okayama Exp $
 case "`/usr/bin/uname -r`" in
     7*|8*) : ${xinitrc_apps_term_enable=YES} ;;
     9*)    : ${xinitrc_apps_term_enable=NO}  ;;
