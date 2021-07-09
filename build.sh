@@ -99,7 +99,7 @@ EOF
     esac
     for src in "$srcdir"/sedsrc/*.in; do
 	base=`basename "$src" .in`
-	go_r "$builddir/$base" sed -f "$builddir/build.sed" "$src"
+	go_r "$builddir/$base" /usr/bin/sed -f "$builddir/build.sed" "$src"
     done
 }
 
@@ -177,12 +177,12 @@ dofink() {
 	;;
     esac
 
-    go_r "$pkgname.info" sed $sedargs "$srcdir/$pkgname.info.in"
+    go_r "$pkgname.info" /usr/bin/sed $sedargs "$srcdir/$pkgname.info.in"
 }
 
 myname=`basename "$0"`
 case "x$myfullname" in
-    x*/*) mydir=`echo "$myfullname" | sed 's|/[^/]*$||'` ;;
+    x*/*) mydir=`echo "$myfullname" | /usr/bin/sed 's|/[^/]*$||'` ;;
     *) mydir=. ;;
 esac
 pkgname="xinitrc"
