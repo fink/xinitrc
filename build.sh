@@ -140,25 +140,20 @@ dofink() {
     version=`cat $srcdir/version`
     case "x$1" in
 	x-r|x--release)
-	cvsver=
+	gitver=
 	fullver="$version"
 	sedargs="-e s/@TARDIST@//g -e s/@PATCHDIST@/#/g"
 	;;
 	x)
-	#cvsver=`awk '\$1 ~ /Id:/ { print \$3}' $srcdir/ChangeLog`
-	idline=`tail -1 "$srcdir/ChangeLog"`
-	case "$idline" in
-	    \$Id\$) cvsver=unknown ;;
-	    \$Id": "*\$) cvsver=`(set $idline; echo $3)` ;;
-	    *) echo "ChangeLog must contain RCSID at the last line" >&1; exit 1 ;;
-	esac
-	fullver="$version+cvs-$cvsver"
+	gitcommit=`/usr/bin/git rev-parse HEAD 2>/dev/null | cut -b 1-8`
+	gitver="+git-$gitcommit"
+	fullver="$version$gitver"
 	sedargs="-e s/@TARDIST@/#/g -e s/@PATCHDIST@//g"
 	;;
 	*) badarg "$1"; exit ;;
     esac
 
-    files=".cvsignore ChangeLog build.sh doc/ $pkgname.info.in sedsrc/ simple/ version"
+    files=".gitignore ChangeLog build.sh doc/ $pkgname.info.in sedsrc/ simple/ version"
     sedargs="$sedargs -e s/@FULLVERSION@/$fullver/g"
 
     workdir="$pkgname-$fullver"
@@ -167,9 +162,9 @@ dofink() {
     go mkdir "$workdir" "$workdir.dummy"
     $show \( cd "$srcdir" \&\& tar cf - $files \) \| \( cd "$workdir" \&\& tar xf - \)
     ( cd "$srcdir" && $run tar cf - $files ) | ( $run cd "$workdir" && $run tar xf - )
-    go_p 'xargs rm -r' find "$workdir" -name CVS -type d
+    go_p 'xargs rm -r' find "$workdir" -name .git -type d
 
-    case "x$cvsver" in
+    case "x$gitcommit" in
 	x)
 	go tar zcf "$pkgname-$fullver.tar.gz" "$workdir"
 	md5=`$run md5 -q "$pkgname-$fullver.tar.gz"`
@@ -182,7 +177,7 @@ dofink() {
 	;;
     esac
 
-    go_r "$pkgname.info" sed -e '/\$''Id/ { s/\$ *//; s/ *\$//; }' $sedargs "$srcdir/$pkgname.info.in"
+    go_r "$pkgname.info" sed $sedargs "$srcdir/$pkgname.info.in"
 }
 
 myname=`basename "$0"`
