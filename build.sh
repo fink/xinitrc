@@ -92,7 +92,7 @@ dobuild() {
 	*)
     $run cat > "$builddir/build.sed" << EOF
 s|@PREFIX@|$prefix|g
-s|@XINITDIR@|/$xinitdir|g
+s|@XINITDIR@|$xinitdir|g
 s|@X_BINDIR@|/opt/X11/bin|g
 EOF
 	;;
