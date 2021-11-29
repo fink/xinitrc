@@ -8,55 +8,55 @@ if test -r "@PREFIX@/etc/xinitrc-override"; then
 elif test -r "@PREFIX@/bin/xinitrc.sh"; then
     . "@PREFIX@/bin/xinitrc.sh"
 else
-    # Xterm and a window manager may be used for trouble shooting.
-    # Run these programs carefully.
+	# Xterm and a window manager may be used for trouble shooting.
+	# Run these programs carefully.
 
-    userresources=$HOME/.Xresources
-    usermodmap=$HOME/.Xmodmap
-    sysresources=@XINITDIR@/.Xresources
-    sysmodmap=@XINITDIR@/.Xmodmap
-    x_bindir=@X_BINDIR@
+	userresources=$HOME/.Xresources
+	usermodmap=$HOME/.Xmodmap
+	sysresources=@XINITDIR@/.Xresources
+	sysmodmap=@XINITDIR@/.Xmodmap
+	x_bindir=@X_BINDIR@
 
-    # merge in defaults and keymaps
+	# merge in defaults and keymaps
 
-    if test -f $sysresources; then
-	xrdb -merge $sysresources
-    fi
+	if test -f $sysresources; then
+		xrdb -merge $sysresources
+	fi
 
-    if test -f $sysmodmap; then
-	xmodmap $sysmodmap
-    fi
+	if test -f $sysmodmap; then
+		xmodmap $sysmodmap
+	fi
 
-    if test -f $userresources; then
-	xrdb -merge $userresources
-    fi
+	if test -f $userresources; then
+		xrdb -merge $userresources
+	fi
 
-    if test -f $usermodmap; then
-	xmodmap $usermodmap
-    fi
+	if test -f $usermodmap; then
+		xmodmap $usermodmap
+	fi
 
-    # start some nice programs
+	# start some nice programs
 
-# Panther or Tiger only. On Leopard, use app_to_run in org.x.X11.plist instead.
-case "`/usr/bin/uname -r`" in
-7*|8*)
-    if test -x "$x_bindir/xterm"; then
-	termcmd="$x_bindir/xterm"
-    else
-	termcmd="xterm"
-    fi
-    $termcmd &
-    ;;
-esac
+	# Panther or Tiger only. On Leopard, use app_to_run in org.x.X11.plist instead.
+	case "`/usr/bin/uname -r`" in
+	7*|8*)
+		if test -x "$x_bindir/xterm"; then
+			termcmd="$x_bindir/xterm"
+		else
+			termcmd="xterm"
+		fi
+		$termcmd &
+		;;
+	esac
 
     # start the window manager
 
-    if type quartz-wm >/dev/null 2>&1; then
-	sessionmgr="`which quartz-wm`"
-    elif test -x "$x_bindir/twm"; then
-	sessionmgr="$x_bindir/twm"
-    else
-	sessionmgr="twm"
-    fi
+	if type quartz-wm >/dev/null 2>&1; then
+		sessionmgr="`which quartz-wm`"
+	elif test -x "$x_bindir/twm"; then
+		sessionmgr="$x_bindir/twm"
+	else
+		sessionmgr="twm"
+	fi
     exec $sessionmgr
 fi

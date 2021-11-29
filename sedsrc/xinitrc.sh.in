@@ -21,7 +21,7 @@ fi
 
 # Hook for system administrators.
 if test -f "$fink_sysconfdir/xinitrc-first-hook"; then
-    . "$fink_sysconfdir/xinitrc-first-hook"
+	. "$fink_sysconfdir/xinitrc-first-hook"
 fi
 
 # Customization variables.
@@ -31,32 +31,32 @@ fi
 : ${xinitrc_sessionmgr_runmethod="exec"}
 
 case "x$xinitrc_fink_init_sh_enable" in
-    x[Yy][Ee][Ss]) . "$xinitrc_fink_init_sh_path" ;;
+	x[Yy][Ee][Ss]) . "$xinitrc_fink_init_sh_path" ;;
 esac
 
 # Numbering policy is described in $fink_prefix/share/doc/xinitrc/numbering.txt.
 if test -d "$xinitrc_xinitrc_d_dir"; then
-    for xinitrc__f in $xinitrc_xinitrc_d_dir/*.sh; do
+	for xinitrc__f in $xinitrc_xinitrc_d_dir/*.sh; do
 	if test -r "$xinitrc__f" -a -x "$xinitrc__f"; then
-	    . "$xinitrc__f"
+		. "$xinitrc__f"
 	fi
-    done
-    unset xinitrc__f
+	done
+	unset xinitrc__f
 fi
 
 # Hook for system administrators.
 if test -f "$fink_sysconfdir/xinitrc-last-hook"; then
-    . "$fink_sysconfdir/xinitrc-last-hook"
+	. "$fink_sysconfdir/xinitrc-last-hook"
 fi
 
 # Start the session or window manager
 if test x"$xinitrc_sessionmgr" != x; then
-    :
+	:
 elif type quartz-wm >/dev/null 2>&1; then
-    xinitrc_sessionmgr="`which quartz-wm`"
+	xinitrc_sessionmgr="`which quartz-wm`"
 elif test -x "$x_bindir/twm"; then
-    xinitrc_sessionmgr="$x_bindir/twm"
+	xinitrc_sessionmgr="$x_bindir/twm"
 else
-    xinitrc_sessionmgr="twm"
+	xinitrc_sessionmgr="twm"
 fi
 $xinitrc_sessionmgr_runmethod $xinitrc_sessionmgr
