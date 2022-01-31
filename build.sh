@@ -1,5 +1,4 @@
 #! /bin/sh
-# $Id: build.sh,v 1.2 2005/04/08 20:44:32 aida_s Exp $
 # vim: set sw=4:
 set -e
 
@@ -80,19 +79,27 @@ go_p() {
 dobuild() {
     go $mkinstalldirscmd "$builddir"
     $show "creating build.sed"
+    if [[ -d /opt/X11/etc/X11/xinit ]]; then
+        xinitdir="/opt/X11/etc/X11/xinit";
+    elif [[ -d /opt/X11/lib/X11/xinit ]]; then
+        xinitdir="/opt/X11/lib/X11/xinit";
+    else
+    	echo "xinit dir for X11 not found. Exiting."
+    	exit 1;
+    fi
     case "x$run" in
 	x:) ;;
 	*)
     $run cat > "$builddir/build.sed" << EOF
 s|@PREFIX@|$prefix|g
-s|@XINITDIR@|/usr/X11R6/lib/X11/xinit|g
-s|@X_BINDIR@|/usr/X11R6/bin|g
+s|@XINITDIR@|$xinitdir|g
+s|@X_BINDIR@|/opt/X11/bin|g
 EOF
 	;;
     esac
     for src in "$srcdir"/sedsrc/*.in; do
 	base=`basename "$src" .in`
-	go_r "$builddir/$base" sed -f "$builddir/build.sed" "$src"
+	go_r "$builddir/$base" /usr/bin/sed -f "$builddir/build.sed" "$src"
     done
 }
 
@@ -133,25 +140,20 @@ dofink() {
     version=`cat $srcdir/version`
     case "x$1" in
 	x-r|x--release)
-	cvsver=
+	gitver=
 	fullver="$version"
 	sedargs="-e s/@TARDIST@//g -e s/@PATCHDIST@/#/g"
 	;;
 	x)
-	#cvsver=`awk '\$1 ~ /Id:/ { print \$3}' $srcdir/ChangeLog`
-	idline=`tail -1 "$srcdir/ChangeLog"`
-	case "$idline" in
-	    \$Id\$) cvsver=unknown ;;
-	    \$Id": "*\$) cvsver=`(set $idline; echo $3)` ;;
-	    *) echo "ChangeLog must contain RCSID at the last line" >&1; exit 1 ;;
-	esac
-	fullver="$version+cvs-$cvsver"
+	gitcommit=`/usr/bin/git rev-parse HEAD 2>/dev/null | cut -b 1-8`
+	gitver="+git-$gitcommit"
+	fullver="$version$gitver"
 	sedargs="-e s/@TARDIST@/#/g -e s/@PATCHDIST@//g"
 	;;
 	*) badarg "$1"; exit ;;
     esac
 
-    files=".cvsignore ChangeLog build.sh doc/ $pkgname.info.in sedsrc/ simple/ version"
+    files=".gitignore ChangeLog build.sh doc/ $pkgname.info.in sedsrc/ simple/ version"
     sedargs="$sedargs -e s/@FULLVERSION@/$fullver/g"
 
     workdir="$pkgname-$fullver"
@@ -160,9 +162,9 @@ dofink() {
     go mkdir "$workdir" "$workdir.dummy"
     $show \( cd "$srcdir" \&\& tar cf - $files \) \| \( cd "$workdir" \&\& tar xf - \)
     ( cd "$srcdir" && $run tar cf - $files ) | ( $run cd "$workdir" && $run tar xf - )
-    go_p 'xargs rm -r' find "$workdir" -name CVS -type d
+    go_p 'xargs rm -r' find "$workdir" -name .git -type d
 
-    case "x$cvsver" in
+    case "x$gitcommit" in
 	x)
 	go tar zcf "$pkgname-$fullver.tar.gz" "$workdir"
 	md5=`$run md5 -q "$pkgname-$fullver.tar.gz"`
@@ -175,12 +177,12 @@ dofink() {
 	;;
     esac
 
-    go_r "$pkgname.info" sed -e '/\$''Id/ { s/\$ *//; s/ *\$//; }' $sedargs "$srcdir/$pkgname.info.in"
+    go_r "$pkgname.info" /usr/bin/sed $sedargs "$srcdir/$pkgname.info.in"
 }
 
 myname=`basename "$0"`
 case "x$myfullname" in
-    x*/*) mydir=`echo "$myfullname" | sed 's|/[^/]*$||'` ;;
+    x*/*) mydir=`echo "$myfullname" | /usr/bin/sed 's|/[^/]*$||'` ;;
     *) mydir=. ;;
 esac
 pkgname="xinitrc"
