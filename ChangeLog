@@ -1,3 +1,9 @@
+2022-01-1 Hanspeter Niederstrasser <nieder@users.sourceforge.net>
+* 1.6 release
+* Fix to deal with Xquartz 2.8 removing support for
+  /opt/X11/lib/X11/xinit.
+* General modernization to fit with current state of Fink.
+
 2008-02-27 AIDA Shinra <shinra@j10n.org>
 * 1.5 release
 * sedsrc/update-sys-xinitrc.in: System xinitrc has been replaced
