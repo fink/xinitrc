@@ -4,7 +4,7 @@ Version: @FULLVERSION@
 Revision: 1
 Description: X11 initialization script handler
 @TARDIST@Source: mirror:sourceforge:fink/%n-%v.tar.gz
-@TARDIST@Source-MD5: @MD5@
+@TARDIST@Source-Checksum: SHA256(@SHA256@)
 @PATCHDIST@Type: nosource
 @PATCHDIST@Patch: %n.patch
 License: Public Domain

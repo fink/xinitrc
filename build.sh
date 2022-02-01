@@ -167,8 +167,8 @@ dofink() {
     case "x$gitcommit" in
 	x)
 	go tar zcf "$pkgname-$fullver.tar.gz" "$workdir"
-	md5=`$run md5 -q "$pkgname-$fullver.tar.gz"`
-	sedargs="$sedargs -e s/@MD5@/$md5/g"
+	sha256=`$run /usr/bin/shasum -a 256 "$pkgname-$fullver.tar.gz" | cut -f1 -d' '`
+	sedargs="$sedargs -e s/@SHA256@/$sha256/g"
 	;;
 	*)
 	set +e
