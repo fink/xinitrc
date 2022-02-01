@@ -27,12 +27,12 @@ Options:
     -h, --help	    show this message
 
 Variables:
-    prefix[=/sw]
+    prefix[=/opt/sw]
     destdir[empty]
     srcdir[auto($mydir)]
 
 Examples:
-    $myname -q destdir=/sw/src/foobar install
+    $myname -q destdir=/opt/sw/src/foobar install
     $myname clean
 EOF
     return 0
@@ -215,7 +215,7 @@ while test "$#" -gt 0; do
     shift
 done
 
-: ${prefix="/sw"}
+: ${prefix="/opt/sw"}
 : ${exec_prefix="${prefix}"}
 : ${bindir="${exec_prefix}/bin"}
 : ${sbindir="${exec_prefix}/sbin"}

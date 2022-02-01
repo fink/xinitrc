@@ -1,28 +1,28 @@
 The xinitrc package is a mechanism to run programs when X11 is launched.
 The design follows:
 
-* /sw/bin/xinitrc.sh is the core component. It prepairs some variables
+* /opt/sw/bin/xinitrc.sh is the core component. It prepairs some variables
 and sources /etc/xinitrc.d/*.
 
-* /sw/sbin/update-xinitrc replaces the system-wide xinitrc.
+* /opt/sw/sbin/update-xinitrc replaces the system-wide xinitrc.
 
-* First the system-wide xinitrc tests if /sw/etc/xinitrc-override
+* First the system-wide xinitrc tests if /opt/sw/etc/xinitrc-override
 exists. If it exists then it is sourced from the system-wide
-xinitrc. Otherwise /sw/bin/xinitrc.sh is sourced. If xinitrc.sh is
+xinitrc. Otherwise /opt/sw/bin/xinitrc.sh is sourced. If xinitrc.sh is
 also missing then the system-wide xinitrc mimics the traditional
 xinitrc.
 
 * The "xinitrc" package has many customization knobs. For instance,
-/sw/etc/xinitrc-first-hook and /sw/etc/xinitrc-last-hook are sourced
-from /sw/bin/xinitrc.sh to allow administrators to run some programs
-or set environment variables.
+/opt/sw/etc/xinitrc-first-hook and /opt/sw/etc/xinitrc-last-hook are
+sourced from /opt/sw/bin/xinitrc.sh to allow administrators to run some
+programs or set environment variables.
 
 Sample xinitrc.d script "50kinput2.sh" follows:
 : ${xinitrc_kinput2_enable=YES}
 case "x$xinitrc_kinput2_enable" in
     x[Yy][Ee][Ss])
-    if test -x /sw/bin/kinput2; then
-	/sw/bin/kinput2 -canna -xim &
+    if test -x /opt/sw/bin/kinput2; then
+	/opt/sw/bin/kinput2 -canna -xim &
     fi
     ;;
 esac
